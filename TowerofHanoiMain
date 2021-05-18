@@ -1,0 +1,62 @@
+// Name
+// Date
+// Game Description
+
+
+
+public class TowerofHanoi {
+
+  // Initialize # of discs(4 discs)
+  // Initialize # of towers (3 towers)
+  
+  
+  // Run Program
+ public static void main(String[] args){
+ 
+ 
+ 
+ }
+ 
+ 
+  // Create Array list ? Use for build tower/add discs?
+  public TowerofHanoi{
+
+
+
+
+
+  }
+
+// Function to move discs to target rod
+// Initiate number of discs, initial rod, destination rod, remaining rod and list.
+// if disks == 0, return
+  public static void Strategy(int d, char initial, char destination, char remain, ArrayList<Integer>[] list){
+
+
+
+  }
+  
+ // Moving 1 disc from initial rod top to destination rod top using ArrayList<Integer>[] list){
+ public static void move
+ 
+ 
+ 
+ 
+ 
+ public static void moveOne(ArrayList<Integer> fromlist, ArrayList<Integer> tolist) {
+	//remove top peg from fromlist
+	int elt = fromlist.remove(0);
+	//add top peg to top of tolist
+	tolist.add(0, elt);
+  
+  
+  
+  // Display towers
+  public void display(ArrayList<Integer>[] lists){
+  
+  
+  
+  }
+  
+  
+}
