@@ -1,58 +1,57 @@
-// Name
-// Date
-// Game Description
+// Caroline El Jazmi
+// Gavin Stuart
+
+// (Date)
+
+// ToDo: Game Instructions
 
 
+public class TowerofHanoiMain {
+    // Num. of disks
+    public int numOfDisks;
+    // Num of towers
+    public int [][] rods;
 
-public class TowerofHanoi {
+    // Run program
+    public static void main(String[] args) {
+    }
 
-  // Initialize # of discs(4 discs)
-  // Initialize # of towers (3 towers)
-  
-  
-  // Run Program
- public static void main(String[] args){
- 
- 
- 
- }
- 
- 
-  // Create Array list ? Use for build tower/add discs?
-  public TowerofHanoi{
+    // Create Array list
+    public TowerofHanoiMain(int numOfDisks) {
+        this.numOfDisks = numOfDisks;
+        rods = new int[numOfDisks][];
 
+        // Build pegs with disks
+        for (int i = 0; i < numOfDisks; i++) {
+            rods[i] = new int[3];
 
+            for (int j = numOfDisks - 1; j >= 0; j--) {
+                rods[i][j] = 0;
+            }
+        }
+    }
 
-
-
-  }
-
-// Function to move discs to target rod
-// Initiate number of discs, initial rod, destination rod, remaining rod and list.
-// if disks == 0, return
-  public static void Strategy(int d, char initial, char destination, char remain, ArrayList<Integer>[] list){
-
-
-
-  }
-  
- // Moving 1 disc from initial rod top to destination rod top using ArrayList<Integer>[] list){
- public static void move
- 
- 
- 
- 
- 
- public static void moveOne(ArrayList<Integer> fromlist, ArrayList<Integer> tolist) {
-	//remove top peg from fromlist
-	int elt = fromlist.remove(0);
-	//add top peg to top of tolist
-	tolist.add(0, elt);
-  
-  
-  
-  // Display towers
-  public void display(ArrayList<Integer>[] lists){
+    // Move disks to target rod
+    public void moveRod(int numOfDisks, char start, char end, char other) {
+        if (numOfDisks == 1) {
+            System.out.println("Move disk from rod" + start + " to rod " + end);
+            display();
+        } else {
+            moveRod(numOfDisks - 1, start, end, other);
+            moveDisk(start,end);
+            moveRod(numOfDisks, other, start, end);
+            display();
+        }
+    }
+    
+    // Displays moving one disk from starting rod to destination
+    private void moveDisk(char start, char end) {
+        System.out.println("Move 1 disk from rod" + start + "to rod " + end);
+    }    
+    
+    
+    // Display towers
+    public void display(ArrayList<Integer>[] lists){
   
   
   
