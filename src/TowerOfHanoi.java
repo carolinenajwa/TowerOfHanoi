@@ -33,16 +33,22 @@ class TowerOfHanoi {
             System.out.println("Starting to transfer disks");
 
             //call tower of hanoi method to assemble rods
-            TowerOfHanoi(numOfDisks);
+            String[][] rodArray = TowerOfHanoi(numOfDisks);
 
-            //call
+            //call the move function
+            //display(rodArray, numOfDisks);
+            moveRod(numOfDisks, rodArray, 0, 2);
+
+
+            //
+            // display(rodArray, numOfDisks);
         }else {
             System.out.println("Could not recognize user input; exiting now");
         }
     }
 
     // Create Array list
-    public static void TowerOfHanoi(int numOfDisks) {
+    public static String[][] TowerOfHanoi(int numOfDisks) {
 
         //create an array with 3 rods with 4 values each
         String[][] rods = new String[3][numOfDisks];
@@ -51,38 +57,76 @@ class TowerOfHanoi {
         for (int i = 0; i < 3; i++) {
             for (int j = numOfDisks - 1; j >= 0; j--) {
 
-                //populate one rod
+                //populate one rod with a-c disks
                 if (i == 0) {
                     rods[i][j] = Character.toString((char) (j + 97));
+                }else {
+                    rods[i][j] = "0";
                 }
             }
         }
+
+        return rods;
     }
 
     // Move disks to target rod
-    public void moveRod(int numOfDisks, char start, char end, char other) {
-        if (numOfDisks == 1) {
-            System.out.println("Move disk from rod" + start + " to rod " + end);
-            //display(end);
-        } else {
-            moveRod(numOfDisks - 1, start, end, other);
-            moveDisk(start,end);
-            moveRod(numOfDisks, other, start, end);
-            //display(end);
+    public static void moveRod(int numOfDisks, String[][] rodArray, int rodA, int rodB) {
+        if (rodArray[rodA][3] != "0" && rodArray[rodA][2] == "0") {
+            System.out.printf("Move 1 disk (%s) from rod %d to %d\n This is the last iteration!", rodArray[rodA][3], rodA, rodB);
+            moveDisk(rodA, rodB, rodArray, numOfDisks - 1);
+        } else if (numOfDisks > 0){
+                System.out.printf("Dropping down one level; Disks left on starting rod = %d\n", numOfDisks);
+                System.out.printf("Move 1 disk (disk %s) from rod %d to %d\n", rodArray[rodA][3], rodA, rodB);
+                moveRod(numOfDisks - 1, rodArray, rodA, rodB);
+                moveDisk(rodA, rodB, rodArray, numOfDisks - 1);
         }
     }
 
     // Displays moving one disk from starting rod to destination
-    private void moveDisk(char start, char end) {
-        System.out.println("Move 1 disk from rod" + start + "to rod " + end);
+    public static void moveDisk(int start, int end, String[][] rodArray,int numOfDisksInArrayForm) {
+        String val = rodArray[start][3];
 
+        //shift starting array values down
+        for (int i = 2; i >= 0; i--) {
+            rodArray[start][i + 1] = rodArray[start][i];
+        }
+
+        if (rodArray[start][0].equals("a")){
+            rodArray[start][0] = "0";
+        }
+
+
+        //find a null value and add the value
+        for (int i = 3; i >= 0; i--) {
+            if (rodArray[end][i] == "0"){
+                rodArray[end][i] = val;
+                break;
+            }
+        }
     }
 
 
     // Display towers
-    public void display(ArrayList<Integer>[] lists){
-        for (int i = 0; i < lists.length; i++) {
-            System.out.println(i);
+    public static void display(String[][] rodArray, int numOfDisks){
+        for (int i = 0; i < 3; i++) {
+
+            //set up test for null rod
+            int totalNull = 0;
+
+            //check each possible disk
+            for (int j = numOfDisks - 1; j >= 0; j--) {
+
+                if (rodArray[i][j] == null){
+                    totalNull++;
+                }else {
+                    System.out.printf("Disk %d on rod %d\n" , j, i);
+                }
+            }
+
+            //if the rod was null, do this
+            if (totalNull == 4) {
+                System.out.printf("No disks on rod %d", i);
+            }
         }
     }
 
