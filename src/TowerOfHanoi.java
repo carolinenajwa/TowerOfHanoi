@@ -11,7 +11,7 @@
 import java.util.*;
 
 
-public class TowerOfHanoi {
+class TowerOfHanoi {
 
     // Num. of disks
     public int numOfDisks;
@@ -21,24 +21,27 @@ public class TowerOfHanoi {
     // Run program
     public static void main(String[] args) {
 
+        //standard number of disks
+        int numOfDisks = 4;
+
         //new scanner
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Towers of Hanoi game.");
         System.out.println("Enter  \"start\" to start moving disks between the rods.");
         String userInput = sc.next();
-        if (userInput.toLowerCase() == "start") {
+        if (userInput.toLowerCase().equals("start")) {
             System.out.println("Starting to transfer disks");
             //call tower of hanoi
-            TowerOfHanoi();
+            TowerOfHanoi(numOfDisks);
         }else {
             System.out.println("Could not recognize user input; exiting now");
         }
     }
 
     // Create Array list
-    public void TowerOfHanoi(int numOfDisks) {
-        this.numOfDisks = numOfDisks;
-        rods = new int[numOfDisks][];
+    public static void TowerOfHanoi(int numOfDisks) {
+
+        int[][] rods = new int[numOfDisks][];
 
         // Build pegs with disks
         for (int i = 0; i < numOfDisks; i++) {
@@ -66,6 +69,7 @@ public class TowerOfHanoi {
     // Displays moving one disk from starting rod to destination
     private void moveDisk(char start, char end) {
         System.out.println("Move 1 disk from rod" + start + "to rod " + end);
+
     }
 
 
