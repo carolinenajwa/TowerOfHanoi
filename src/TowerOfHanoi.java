@@ -31,8 +31,11 @@ class TowerOfHanoi {
         String userInput = sc.next();
         if (userInput.toLowerCase().equals("start")) {
             System.out.println("Starting to transfer disks");
-            //call tower of hanoi
+
+            //call tower of hanoi method to assemble rods
             TowerOfHanoi(numOfDisks);
+
+            //call
         }else {
             System.out.println("Could not recognize user input; exiting now");
         }
@@ -41,14 +44,17 @@ class TowerOfHanoi {
     // Create Array list
     public static void TowerOfHanoi(int numOfDisks) {
 
-        int[][] rods = new int[numOfDisks][];
+        //create an array with 3 rods with 4 values each
+        String[][] rods = new String[3][numOfDisks];
 
         // Build pegs with disks
-        for (int i = 0; i < numOfDisks; i++) {
-            rods[i] = new int[3];
-
+        for (int i = 0; i < 3; i++) {
             for (int j = numOfDisks - 1; j >= 0; j--) {
-                rods[i][j] = 0;
+
+                //populate one rod
+                if (i == 0) {
+                    rods[i][j] = Character.toString((char) (j + 97));
+                }
             }
         }
     }
