@@ -36,12 +36,9 @@ class TowerOfHanoi {
             String[][] rodArray = TowerOfHanoi(numOfDisks);
 
             //call the move function
-            //display(rodArray, numOfDisks);
+            display(rodArray, numOfDisks);
             moveRod(numOfDisks, rodArray, 0, 2);
-
-
-            //
-            // display(rodArray, numOfDisks);
+            display(rodArray, numOfDisks);
         }else {
             System.out.println("Could not recognize user input; exiting now");
         }
@@ -71,19 +68,20 @@ class TowerOfHanoi {
 
     // Move disks to target rod
     public static void moveRod(int numOfDisks, String[][] rodArray, int rodA, int rodB) {
-        if (rodArray[rodA][3] != "0" && rodArray[rodA][2] == "0") {
-            System.out.printf("Move 1 disk (%s) from rod %d to %d\n This is the last iteration!", rodArray[rodA][3], rodA, rodB);
-            moveDisk(rodA, rodB, rodArray, numOfDisks - 1);
+        if (!rodArray[rodA][3].equals("0") && rodArray[rodA][2].equals("0")) {
+            System.out.printf("Move 1 disk (%s) from rod %d to %d\n This is the last iteration!\n", rodArray[rodA][3], rodA, rodB);
+            moveDisk(rodA, rodB, rodArray);
         } else if (numOfDisks > 0){
+                moveDisk(rodA, rodB, rodArray);
                 System.out.printf("Dropping down one level; Disks left on starting rod = %d\n", numOfDisks);
                 System.out.printf("Move 1 disk (disk %s) from rod %d to %d\n", rodArray[rodA][3], rodA, rodB);
                 moveRod(numOfDisks - 1, rodArray, rodA, rodB);
-                moveDisk(rodA, rodB, rodArray, numOfDisks - 1);
+
         }
     }
 
     // Displays moving one disk from starting rod to destination
-    public static void moveDisk(int start, int end, String[][] rodArray,int numOfDisksInArrayForm) {
+    public static void moveDisk(int start, int end, String[][] rodArray) {
         String val = rodArray[start][3];
 
         //shift starting array values down
@@ -116,16 +114,16 @@ class TowerOfHanoi {
             //check each possible disk
             for (int j = numOfDisks - 1; j >= 0; j--) {
 
-                if (rodArray[i][j] == null){
+                if (rodArray[i][j].equals("0")){
                     totalNull++;
                 }else {
-                    System.out.printf("Disk %d on rod %d\n" , j, i);
+                    System.out.printf("Disk %s on rod %d\n" , rodArray[i][j], i);
                 }
             }
 
             //if the rod was null, do this
             if (totalNull == 4) {
-                System.out.printf("No disks on rod %d", i);
+                System.out.printf("No disks on rod %d\n", i);
             }
         }
     }
