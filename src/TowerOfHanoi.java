@@ -71,19 +71,20 @@ class TowerOfHanoi {
 
     // Move disks to target rod
     public static void moveRod(int numOfDisks, String[][] rodArray, int rodA, int rodB) {
-        if (rodArray[rodA][3] != "0" && rodArray[rodA][2] == "0") {
+        if (!rodArray[rodA][3].equals("0") && rodArray[rodA][2].equals("0")) {
             System.out.printf("Move 1 disk (%s) from rod %d to %d\n This is the last iteration!", rodArray[rodA][3], rodA, rodB);
-            moveDisk(rodA, rodB, rodArray, numOfDisks - 1);
+            moveDisk(rodA, rodB, rodArray);
         } else if (numOfDisks > 0){
+                moveDisk(rodA, rodB, rodArray);
                 System.out.printf("Dropping down one level; Disks left on starting rod = %d\n", numOfDisks);
                 System.out.printf("Move 1 disk (disk %s) from rod %d to %d\n", rodArray[rodA][3], rodA, rodB);
                 moveRod(numOfDisks - 1, rodArray, rodA, rodB);
-                moveDisk(rodA, rodB, rodArray, numOfDisks - 1);
+
         }
     }
 
     // Displays moving one disk from starting rod to destination
-    public static void moveDisk(int start, int end, String[][] rodArray,int numOfDisksInArrayForm) {
+    public static void moveDisk(int start, int end, String[][] rodArray) {
         String val = rodArray[start][3];
 
         //shift starting array values down
