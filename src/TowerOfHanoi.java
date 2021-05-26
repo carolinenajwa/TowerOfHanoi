@@ -1,13 +1,14 @@
 // Caroline El Jazmi
 // Gavin Stuart
+// 05/25/2021
+// CS 145
+// Lab 5 - Tower of Hanoi
 
-//this program attempts to solve the classic "Tower of Hanoi" problem.
+// This reccursive program outputs a self-playing Tower of Hanoi game. This version of the Tower of Hanoi 
+// uses an array data structure to strategically move 4 disks 
+// between 3 seperate towers in order of smallest disk(top) to largest disk(bottom).
 
-// 5/25/2021
 
-// ToDo: Game Instructions
-
-//import java utilities
 import java.util.*;
 
 
@@ -44,7 +45,7 @@ class TowerOfHanoi {
         }
     }
 
-    // Create Array list
+    // Create array list
     public static String[][] TowerOfHanoi(int numOfDisks) {
 
         //create an array with 3 rods with 4 values each
